@@ -68,7 +68,7 @@ void msort(std::vector<int>& arr, std::vector<int>& tempArr, int left, int right
 
 
 //归并排序入口
-void merge_sort(std::vector<int>& arr)
+void merge_sort_rec(std::vector<int>& arr)
 {
 	//开辟一个辅助容器
 	std::vector<int> tempArr(arr.size());
@@ -78,7 +78,36 @@ void merge_sort(std::vector<int>& arr)
 }
 
 
+//归并排序（迭代）
+void merge_sort_iter(std::vector<int>& arr)
+{
+	int n = arr.size();
+	if (n <= 1)	return;
 
+	//开辟一个辅助空间
+	std::vector<int> tempArr(n);
+
+
+
+	//归并
+	//步长从1开始，到最后数组长度
+	for (int size = 1; size < n; size *= 2)
+	{
+		//分区，每次处理相邻两个区
+		for (int left = 0; left < n; left += size * 2)
+		{
+			int mid = left + size - 1;
+			int right = std::min(left + size * 2 - 1, n - 1);
+
+			//左数组肯定非空，右数组涉及一个最小值，导致可能为空，右数组非空才合并
+			if (mid < right)
+			{
+				merge(arr, tempArr, left, mid, right);
+			}
+		}
+	}
+
+}
 
 int main()
 {
@@ -86,7 +115,8 @@ int main()
 	
 	printArr(arr);
 
-	merge_sort(arr);
+	//merge_sort_rec(arr);
+	merge_sort_iter(arr);
 
 	printArr(arr);
 	return 0;

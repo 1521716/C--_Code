@@ -1,0 +1,29 @@
+# C++ 学习代码 .gitignore
+
+# Visual Studio
+.vs/
+*.suo
+*.user
+*.userosscache
+Debug/
+Release/
+x64/
+ipch/
+*.db
+*.opendb
+*.VC.db
+
+# 编译产物
+*.o
+*.obj
+*.exe
+*.out
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+Desktop.ini
